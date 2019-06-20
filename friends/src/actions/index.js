@@ -32,7 +32,7 @@ export const getData = () => dispatch => {
         .get(`http://localhost:5000/api/friends`)
         .then(res => {
             console.log(res)
-            dispatch({ type: FETCH_SUCCESS, payload: res.data.friends})
+            dispatch({ type: FETCH_SUCCESS, payload: res.data})
         })
         .catch(err => {
             dispatch({ type: FETCH_FAILURE, payload: err})

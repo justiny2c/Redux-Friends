@@ -13,7 +13,7 @@ class FriendsList extends React.Component {
             <div>
                 {this.props.friends.map(friend => {
                     return (
-                    <div>{this.friend}</div> )
+                    <div>{friend.name}</div> )
                 })}
 
             </div>
@@ -23,8 +23,8 @@ class FriendsList extends React.Component {
 
 }
 
-const mapStateToProps = ({ friends }) => ({
-    friends
+const mapStateToProps = state => ({
+    friends: state.friendsReducer.friends
 })
 
 export default connect (
