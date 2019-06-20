@@ -1,12 +1,17 @@
 import React from "react"
+import { connect } from "react-redux";
+import { loggingIn } from "../actions"
 
 
 
 
 class Login extends React.Component {
     state = {
+
         username: "",
         password: "",
+
+        
     }
     handleChange = e => {
         this.setState({
@@ -14,6 +19,14 @@ class Login extends React.Component {
         })
     }
 
+    loggingIn = e => {
+        e.preventDefault();
+        this.props.loggingIn(this.state);
+        this.setState({
+            username: "",
+            password: "",
+        })
+    }
     render(){
         return (
             <div>
@@ -29,7 +42,8 @@ class Login extends React.Component {
                     value={this.state.password}
                     name="password" />
                 
-                <button>Login</button>
+                <button
+                    onClick={this.loggingIn}>Login</button>
 
             </div>
         )
@@ -37,4 +51,14 @@ class Login extends React.Component {
     }
 }
 
-export default Login;
+
+const mapStateToProps = state => ({
+    loggingIn: state.loggingIn,
+    error: state.error
+})
+
+
+export default connect (
+    mapStateToProps,
+    { loggingIn }
+)(Login);
